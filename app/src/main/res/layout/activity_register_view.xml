@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".viewController.RegisterView"
+    android:background="?attr/elevationOverlayColor"
+    >
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/rejestrowanieText"
+        app:layout_constraintStart_toStartOf="@+id/rejestrowanieText"
+        app:layout_constraintEnd_toEndOf="@+id/rejestrowanieText"
+        android:src="@drawable/user"
+        />
+
+    <TextView
+        android:id="@+id/rejestrowanieText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rejestrowanie"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/regLoginUser"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/rejestrowanieText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="100dp"
+        android:hint="Login"
+        android:gravity="center"
+        />
+    <EditText
+        android:id="@+id/passwordUser"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/regLoginUser"
+        app:layout_constraintStart_toStartOf="@+id/regLoginUser"
+        app:layout_constraintEnd_toEndOf="@+id/regLoginUser"
+        android:hint="Password"
+        android:gravity="center"
+        android:inputType="textPassword"
+        />
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zarejestruj się"
+        app:layout_constraintTop_toBottomOf="@+id/passwordUser"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="80dp"
+        android:translationZ="20dp"
+        android:paddingHorizontal="12dp"
+        android:backgroundTint="#0000FF"
+        />
+    <TextView
+        android:id="@+id/haveAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Masz konto?"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="20dp"
+        />
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zaloguj się"
+        android:textColor="#ffffff"
+        android:backgroundTint="#ff00ff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="9dp"
+        />
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,10 @@
-package com.konrados.testconstraintlayout.buttony;
+package com.konrados.testconstraintlayout.service;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.konrados.testconstraintlayout.databinding.ActivityMainLoggingBinding;
+import com.konrados.testconstraintlayout.viewController.QuestionScreen;
 
 public class ButtonLoggingView {
     ActivityMainLoggingBinding bin;
@@ -18,6 +20,15 @@ public class ButtonLoggingView {
 
     public void pokazLogin() {
         bin.welcomeText.setText("Witaj " + login + "!");
+
+    }
+
+    public void clickButtonAdhd() {
+        bin.adhdButton.setOnClickListener(v -> {
+            Intent intent = new Intent(context, QuestionScreen.class);
+            context.startActivity(intent);
+        });
+
 
     }
 }

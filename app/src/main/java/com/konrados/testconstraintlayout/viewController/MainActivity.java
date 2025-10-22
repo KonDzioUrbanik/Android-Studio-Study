@@ -9,8 +9,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.konrados.testconstraintlayout.R;
-import com.konrados.testconstraintlayout.buttony.ButtonyMain;
-import com.konrados.testconstraintlayout.buttony.ButtonyRegisterView;
+import com.konrados.testconstraintlayout.service.ButtonyMain;
+import com.konrados.testconstraintlayout.service.ButtonyRegisterView;
 import com.konrados.testconstraintlayout.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {

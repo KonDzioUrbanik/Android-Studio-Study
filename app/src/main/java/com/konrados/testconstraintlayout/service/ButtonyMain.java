@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.konrados.testconstraintlayout.api.ApiClient;
 import com.konrados.testconstraintlayout.api.User;
 import com.konrados.testconstraintlayout.databinding.ActivityMainBinding;
+import com.konrados.testconstraintlayout.viewController.MainActivity;
 import com.konrados.testconstraintlayout.viewController.MainActivityLogging;
 import com.konrados.testconstraintlayout.viewController.RegisterView;
 
@@ -28,6 +29,10 @@ public class ButtonyMain {
         bin.registerButton.setOnClickListener(v -> {
             Intent zmianaOkna = new Intent(contextEkranu, RegisterView.class);
             contextEkranu.startActivity(zmianaOkna);
+            if (contextEkranu instanceof MainActivity) {
+                ((MainActivity) contextEkranu).finish();
+            }
+
         });
     }
 
@@ -73,7 +78,11 @@ public class ButtonyMain {
                     if (msg.equals("User logged successfully")) {
                         Intent zmianaOkna = new Intent(contextEkranu, MainActivityLogging.class);
                         zmianaOkna.putExtra("login", login);
+                        
                         contextEkranu.startActivity(zmianaOkna);
+                        if (contextEkranu instanceof MainActivity) {
+                            ((MainActivity) contextEkranu).finish();
+                        }
                         Toast.makeText(contextEkranu, "Zalogowano pomyślnie", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(contextEkranu, msg, Toast.LENGTH_SHORT).show();

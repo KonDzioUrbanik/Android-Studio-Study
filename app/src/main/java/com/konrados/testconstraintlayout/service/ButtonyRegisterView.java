@@ -10,6 +10,7 @@ import com.konrados.testconstraintlayout.api.User;
 import com.konrados.testconstraintlayout.databinding.ActivityRegisterViewBinding;
 import com.konrados.testconstraintlayout.viewController.MainActivity;
 import com.konrados.testconstraintlayout.viewController.MainActivityLogging;
+import com.konrados.testconstraintlayout.viewController.RegisterView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,10 +48,14 @@ public class ButtonyRegisterView {
                     public void onResponse(Call<String> call, Response<String> response) {
                         if (response.isSuccessful()){
                             response.body();
-                            Intent gotoLogin = new Intent(contextEkranu, MainActivityLogging.class);
+                            Intent gotoLogin = new Intent(contextEkranu, MainActivity.class);
                             gotoLogin.putExtra("login",login);
+                            gotoLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                             contextEkranu.startActivity(gotoLogin);
                             Toast.makeText(contextEkranu,"Rejestracja przebiegła pomyślnie",Toast.LENGTH_SHORT).show();
+                            if (contextEkranu instanceof RegisterView) {
+                                ((RegisterView) contextEkranu).finish();
+                            }
                         }
                         else {
                             response.code();
@@ -74,6 +79,9 @@ public class ButtonyRegisterView {
         bin.loginButton.setOnClickListener(v -> {
             Intent gotoLogin = new Intent(contextEkranu, MainActivity.class);
             contextEkranu.startActivity(gotoLogin);
+            if (contextEkranu instanceof RegisterView) {
+                ((RegisterView) contextEkranu).finish();
+            }
         });
     }
 }

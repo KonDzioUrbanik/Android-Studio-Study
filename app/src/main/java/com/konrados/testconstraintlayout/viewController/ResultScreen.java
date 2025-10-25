@@ -1,5 +1,6 @@
 package com.konrados.testconstraintlayout.viewController;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -15,8 +16,6 @@ import com.konrados.testconstraintlayout.databinding.ActivityResultScreenBinding
 
 public class ResultScreen extends AppCompatActivity {
     ActivityResultScreenBinding bin;
-    
-    
 
 
 
@@ -33,10 +32,13 @@ public class ResultScreen extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        String login = getIntent().getStringExtra("login");
         int totalPoints = getIntent().getIntExtra("totalPoints", 0);
+        String category = getIntent().getStringExtra("CATEGORY");
         Toast.makeText(this, "Total points: " + totalPoints, Toast.LENGTH_SHORT).show();
-        ResultScreenService resultScreenService = new ResultScreenService(bin);
+        ResultScreenService resultScreenService = new ResultScreenService(bin, this,login,category);
         resultScreenService.result(totalPoints);
+        resultScreenService.buttonActionEnded();
 
 
     }

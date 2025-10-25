@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.konrados.testconstraintlayout.api.Answer;
 import com.konrados.testconstraintlayout.api.Question;
 import com.konrados.testconstraintlayout.databinding.ActivityQuestionScreenBinding;
+import com.konrados.testconstraintlayout.viewController.QuestionScreen;
 import com.konrados.testconstraintlayout.viewController.ResultScreen;
 
 import java.util.List;
@@ -26,15 +27,19 @@ public class QuestionPresenter {
     private ActivityQuestionScreenBinding bin;
 
     Context contextEkranuLogging;
+    String login;
 
     private int totalPoints = 0;
+    String category;
 
 
-    public QuestionPresenter(ActivityQuestionScreenBinding bin, Context contextEkranuLogging) {
+    public QuestionPresenter(ActivityQuestionScreenBinding bin, Context contextEkranuLogging, String login, String category) {
 
         this.bin = bin;
 
         this.contextEkranuLogging = contextEkranuLogging;
+        this.login = login;
+        this.category = category;
 
     }
 
@@ -72,9 +77,12 @@ public class QuestionPresenter {
             Toast.makeText(contextEkranuLogging, "Koniec testu! Zdobyte punkty: " + totalPoints, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(contextEkranuLogging, ResultScreen.class);
             intent.putExtra("totalPoints", totalPoints);
+            intent.putExtra("CATEGORY", category);
+            intent.putExtra("login", login);
             contextEkranuLogging.startActivity(intent);
-
-            //TODO() Podsumowanie testu
+            if (contextEkranuLogging instanceof QuestionScreen) {
+                ((QuestionScreen) contextEkranuLogging).finish();
+            }
 
         }
 

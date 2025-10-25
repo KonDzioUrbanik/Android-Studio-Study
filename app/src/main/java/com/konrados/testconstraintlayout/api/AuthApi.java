@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface AuthApi {
 
@@ -17,6 +18,10 @@ public interface AuthApi {
 
     @GET("/api/questions/getQuestions")
     Call<List<Question>> getQuestions();
+
+    @GET("/api/questions/getByCategory")
+    Call<List<Question>> getQuestionsByCategory(@Query("category") String category);
+
 
 
 

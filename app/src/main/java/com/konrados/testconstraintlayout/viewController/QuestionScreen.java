@@ -1,5 +1,6 @@
 package com.konrados.testconstraintlayout.viewController;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -40,30 +41,40 @@ public class QuestionScreen extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-        });
 
-        questionPresenter = new QuestionPresenter(bin, this);
+        });
+        String login = getIntent().getStringExtra("login");
+        String category = getIntent().getStringExtra("CATEGORY");
+
+
+
+
+        questionPresenter = new QuestionPresenter(bin, this,login,category);
 
         questionPresenter.clickButtonNext();
 
         //Wczytywanie pytań i odpowiedzi
-        ApiClient.getAuthApi().getQuestions().enqueue(new Callback<List<Question>>() {
+
+
+
+        ApiClient.getAuthApi().getQuestionsByCategory(category).enqueue(new Callback<List<Question>>() {
             @Override
             public void onResponse(Call<List<Question>> call, Response<List<Question>> response) {
-                if (!response.isSuccessful()) {
-
-                    Toast.makeText(QuestionScreen.this, "Nie udało się pobrać pytań: " + response.code(), Toast.LENGTH_SHORT).show();
-                } else {
-
-                    questionPresenter.setQuestions(response.body());
-                    questionPresenter.showQuestion();
+                if (!response.isSuccessful() || response.body() == null) {
+                    Toast.makeText(QuestionScreen.this,
+                            "Nie udało się pobrać pytań: " + response.code(),
+                            Toast.LENGTH_SHORT).show();
+                    return;
                 }
+                questionPresenter.setQuestions(response.body());
+                questionPresenter.showQuestion();
             }
 
             @Override
-            public void onFailure(Call<List<Question>> call, Throwable throwable) {
-
-                Toast.makeText(QuestionScreen.this, "Nie udało się połączyć z siecią: " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<List<Question>> call, Throwable t) {
+                Toast.makeText(QuestionScreen.this,
+                        "Błąd sieci: " + t.getMessage(),
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }

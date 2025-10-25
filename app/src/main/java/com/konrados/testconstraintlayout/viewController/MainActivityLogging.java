@@ -37,6 +37,9 @@ public class MainActivityLogging extends AppCompatActivity {
         buttonLoggingView = new ButtonLoggingView(bin, this, login);
         buttonLoggingView.pokazLogin();
         buttonLoggingView.clickButtonAdhd();
+        buttonLoggingView.clickButtonAnxiety();
+        buttonLoggingView.clickButtonDepression();
+
 
 
     }

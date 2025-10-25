@@ -20,7 +20,7 @@ public class ApiClient {
                     .addInterceptor(logger)
                     .build();
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://10.0.2.2:8080/") // emulator; na fizycznym telefonie wpisz IP kompa
+                    .baseUrl("http://192.168.0.110:8080/") // emulator; na fizycznym telefonie wpisz IP kompa
                     .addConverterFactory(ScalarsConverterFactory.create()) // <- najpierw scalars
                     .addConverterFactory(GsonConverterFactory.create())    // potem JSON
                     .client(client)

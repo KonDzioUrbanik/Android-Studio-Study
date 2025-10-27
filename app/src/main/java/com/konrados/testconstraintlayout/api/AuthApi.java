@@ -10,10 +10,10 @@ import retrofit2.http.Query;
 
 public interface AuthApi {
 
-    @POST("/register")
+    @POST("register")
     Call<String> register(@Body User user);
 
-    @POST("/login")
+    @POST("login")
     Call<String> login(@Body User user);
 
     @GET("/api/questions/getQuestions")

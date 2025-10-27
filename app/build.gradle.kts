@@ -1,12 +1,22 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
 }
 
+val backendUrlRaw = run {
+    val props = Properties()
+    val propsFile = rootProject.file("local.properties")
+    if (propsFile.exists()) {
+        propsFile.inputStream().use(props::load)
+    }
+    props.getProperty("backendUrl", "https://konradcode.pl/api/")
+}
+val backendUrl = if (backendUrlRaw.endsWith("/")) backendUrlRaw else "$backendUrlRaw/"
+
 android {
     namespace = "com.konrados.testconstraintlayout"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.konrados.testconstraintlayout"
@@ -16,6 +26,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL", "\"$backendUrl\"")
     }
 
     buildTypes {
@@ -31,10 +42,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
-    android{
-        buildFeatures {
-            viewBinding = true
-        }
+    buildFeatures {
+        buildConfig = true
+        viewBinding = true
     }
 }
 
@@ -52,8 +62,8 @@ dependencies {
 
     // Retrofit (HTTP client)
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
-// JSON konwerter (Gson)
+    // JSON konwerter (Gson)
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
-// OkHttp + logging (do debugowania requestów)
+    // OkHttp + logging (do debugowania requestów)
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 }

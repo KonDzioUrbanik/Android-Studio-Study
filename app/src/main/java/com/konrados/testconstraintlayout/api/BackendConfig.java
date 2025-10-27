@@ -7,7 +7,7 @@ final class BackendConfig {
     private static final String TAG = "BackendConfig";
     private static final String BUILD_CONFIG_CLASS = "com.konrados.testconstraintlayout.BuildConfig";
     private static final String BASE_URL_FIELD = "BASE_URL";
-    private static final String DEFAULT_BASE_URL = "https://konradcode.pl/api/";
+    private static final String DEFAULT_BASE_URL = "https://api.konradcode.pl/api";
 
 
     private BackendConfig() {

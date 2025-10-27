@@ -10,7 +10,7 @@ val backendUrlRaw = run {
     if (propsFile.exists()) {
         propsFile.inputStream().use(props::load)
     }
-    props.getProperty("backendUrl", "https://konradcode.pl/api/")
+    props.getProperty("backendUrl", "https://api.konradcode.pl/api")
 }
 val backendUrl = if (backendUrlRaw.endsWith("/")) backendUrlRaw else "$backendUrlRaw/"
 
